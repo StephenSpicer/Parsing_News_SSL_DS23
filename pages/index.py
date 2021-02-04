@@ -5,6 +5,8 @@ import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
 import plotly.express as px
+import pandas as pd
+import joblib 
 
 # Imports from this application
 from app import app
@@ -18,27 +20,43 @@ column1 = dbc.Col(
         
             ## We can predict fake news at least as well as flipping a coin by training a model. 
 
-            Emphasize how the app will benefit users. Don't emphasize the underlying technology.
+            Theoretically we can also let you paste text into this same model...
 
-            ✅ RUN is a running app that adapts to your fitness levels and designs personalized workouts to help you improve your running.
+            ✅ REAL - a 0 will be displayed.
 
-            ❌ RUN is the only intelligent running app that uses sophisticated deep neural net machine learning to make your run smarter because we believe in ML driven workouts.
+            ❌ Fake - a 1 will be displayed.
 
             """
         ),
-        dcc.Link(dbc.Button('Your Call To Action', color='primary'), href='/predictions')
+        dcc.Link(dbc.Button('Predict', color='primary'), href='/predictions')
     ],
     md=4,
 )
 
-gapminder = px.data.gapminder()
-fig = px.scatter(gapminder.query("year==2007"), x="gdpPercap", y="lifeExp", size="pop", color="continent",
-           hover_name="country", log_x=True, size_max=60)
+# # gapminder = px.data.gapminder()
+# # fig = px.scatter(gapminder.query("year==2007"), x="gdpPercap", y="lifeExp", size="pop", color="continent",
+# #            hover_name="country", log_x=True, size_max=60)
 
-column2 = dbc.Col(
-    [
-        dcc.Graph(figure=fig),
-    ]
-)
+column2 = html.Div([
+    dcc.Textarea(
+        id='textarea-example',
+        value='Textarea content initialized\nwith multiple lines of text',
+        style={'width': '500%', 'height': 300},
+    ),
+    html.Div(id='textarea-example-output', style={'whiteSpace': 'pre-line'})
+])
+
+# column2 = dbc.Col(
+#     [
+#         #dcc.Graph(figure=fig),
+#     ]
+# )
 
 layout = dbc.Row([column1, column2])
+
+def predict(value=value):
+    data = {'text': [value]}
+    df = pd.DataFrame(data)
+    y_pred = model.predict(df['text'])
+    return "Fake = ".format(y_pred)
+
