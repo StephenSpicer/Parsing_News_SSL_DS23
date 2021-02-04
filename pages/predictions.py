@@ -2,8 +2,9 @@ import dash
 from dash.dependencies import Input, Output
 import dash_html_components as html
 import dash_core_components as dcc
+from app import app
 
-app = dash.Dash(__name__)
+#app = dash.Dash(__name__)
 
 app.layout = html.Div([
     dcc.Textarea(
@@ -15,8 +16,8 @@ app.layout = html.Div([
 ])
 
 @app.callback(
-    Output('textarea-example-output', 'children'),
-    Input('textarea-example', 'value')
+    Output('Paste Text Here', 'children'),
+    [Input('textarea-example', 'value')]
 )
 def update_output(value):
     return 'You have entered: \n{}'.format(value)
