@@ -16,7 +16,7 @@ column1 = dbc.Col(
         dcc.Markdown(
             """
         
-            ## Your Value Proposition
+            ## We can predict fake news at least as well as flipping a coin by training a model. 
 
             Emphasize how the app will benefit users. Don't emphasize the underlying technology.
 
