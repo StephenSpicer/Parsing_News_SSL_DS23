@@ -38,12 +38,12 @@ column1 = dbc.Col(
 # #            hover_name="country", log_x=True, size_max=60)
 
 column2 = html.Div([
-    dcc.Textarea(
-        id='textarea-example',
-        value='Textarea content initialized\nwith multiple lines of text',
-        style={'width': '500%', 'height': 300},
-    ),
-    html.Div(id='textarea-example-output', style={'whiteSpace': 'pre-line'})
+    # dcc.Textarea(
+    #     id='textarea-example',
+    #     value='Textarea content initialized\nwith multiple lines of text',
+    #     style={'width': '500%', 'height': 300},
+    # ),
+    # html.Div(id='textarea-example-output', style={'whiteSpace': 'pre-line'})
 ])
 
 # column2 = dbc.Col(
@@ -54,9 +54,9 @@ column2 = html.Div([
 
 layout = dbc.Row([column1, column2])
 
-def predict(value=value):
-    data = {'text': [value]}
-    df = pd.DataFrame(data)
-    y_pred = model.predict(df['text'])
-    return "Fake = ".format(y_pred)
+# def predict(value=value):
+#     data = {'text': [value]}
+#     df = pd.DataFrame(data)
+#     y_pred = model.predict(df['text'])
+#     return "Fake = ".format(y_pred)
 
